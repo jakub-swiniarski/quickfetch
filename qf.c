@@ -4,9 +4,10 @@
 int main(){
     for(int i=0; i<HEIGHT; i++){
         for(int j=0; j<WIDTH; j++){
-            printf("%c"ASCII_COLOR, ASCII[i][j]);
+            printf(ASCII_COLOR"%c", ASCII[i][j]);
         }
-        printf("\n"TEXT_COLOR);
+        printf(TEXT_COLOR);
+        printf("\n");
     }
 
     return 0;
