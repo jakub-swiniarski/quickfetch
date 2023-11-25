@@ -7,17 +7,24 @@ int main(){
     //get data
     char data[HEIGHT][MAX];
     for(unsigned short i=0; i<HEIGHT; i++)
-        sprintf(data[i], "ERROR");
+        sprintf(data[i]," ");
 
     FILE *fptr;
+    int temp; //temporary
+    char ch;
 
     //uptime
-
+    fptr=fopen(UPTIME,"r");
+    while((ch=fgetc(fptr))!=' ')
+        strncat(data[1],&ch,1);
+    temp=atoi(data[1]);
+    sprintf(data[1],"%d",temp/60);
+    fclose(fptr);
 
     //cpu temp
     fptr=fopen(CPU_TEMP,"r");
     fgets(data[2], MAX, fptr);
-    int temp=atof(data[2]);
+    temp=atoi(data[2]);
     sprintf(data[2],"%d",temp/1000);
     fclose(fptr);
 
