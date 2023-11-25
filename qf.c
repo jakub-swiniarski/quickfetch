@@ -11,11 +11,14 @@ int main(){
 
     FILE *fptr;
 
-    //cpu
+    //uptime
+
+
+    //cpu temp
     fptr=fopen(CPU_TEMP,"r");
-    fgets(data[0], MAX, fptr);
-    int temp=atof(data[0]);
-    sprintf(data[0],"%d",temp/1000);
+    fgets(data[2], MAX, fptr);
+    int temp=atof(data[2]);
+    sprintf(data[2],"%d",temp/1000);
     fclose(fptr);
 
     //battery
