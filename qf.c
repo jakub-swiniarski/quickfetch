@@ -34,6 +34,12 @@ int main(){
     fptr=fopen(BATTERY,"r");
     fgets(data[6],MAX,fptr); 
     fclose(fptr);
+    for(unsigned short i=0; i<MAX; i++){
+        if(data[6][i]=='\n'){
+            data[6][i]='%';
+            break;
+        }
+    }
 
     //print ascii logo and data
     for(unsigned short i=0; i<HEIGHT; i++){
