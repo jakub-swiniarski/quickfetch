@@ -1,5 +1,5 @@
 //colors
-#define ASCII_COLOR "\033[22;34m"
+#define ASCII_COLOR "\033[22;36m"
 #define TEXT_COLOR "\033[0m"
 
 //ascii array size
