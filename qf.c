@@ -52,7 +52,7 @@ int main(){
     statvfs(DISK,&buffer_statvfs); //check if no error (TODO)
     unsigned long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
     unsigned long disk_available=buffer_statvfs.f_bavail*buffer_statvfs.f_frsize;
-    sprintf(data[4],"%lu",100*disk_available/disk_total);
+    sprintf(data[4],"%lu",100*(disk_total-disk_available)/disk_total);
     strcat(data[4],"% used");   
 
     //battery
