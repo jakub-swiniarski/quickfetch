@@ -15,3 +15,16 @@ static const char ASCII[HEIGHT][WIDTH]={
     " /   |  |   \\ ",
     "/_-''    ''-_\\"
 };
+
+//system info
+static const char LABELS[HEIGHT][15]={
+    "IDK",
+    "IDK",
+    "IDK",
+    "IDK",
+    "IDK",
+    "IDK",
+    "Battery: "
+};
+
+static const char *BATTERY="/sys/class/power_supply/BAT0/capacity";
