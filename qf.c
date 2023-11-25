@@ -18,11 +18,9 @@ int main(){
         printf(ASCII_COLOR"%s", ASCII[i]);
         
         //data
-        printf(" ");
-        printf("%s",LABELS[i]);
+        printf(" %s",LABELS[i]);
         printf(TEXT_COLOR);
-        printf("%s",data[i]);
-        printf("\n");
+        printf("%s\n",data[i]);
     }
 
     return 0;
