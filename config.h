@@ -6,6 +6,9 @@
 #define HEIGHT 7
 #define WIDTH 15
 
+//max label and data length
+#define MAX 20
+
 static const char ASCII[HEIGHT][WIDTH]={   
     "      /\\      ",
     "     /  \\     ",
@@ -17,7 +20,7 @@ static const char ASCII[HEIGHT][WIDTH]={
 };
 
 //system info
-static const char LABELS[HEIGHT][15]={
+static const char LABELS[HEIGHT][MAX]={
     "IDK ",
     "IDK ",
     "IDK ",

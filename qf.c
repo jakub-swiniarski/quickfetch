@@ -1,7 +1,6 @@
 #include <stdio.h>
+#include <string.h>
 #include "config.h"
-
-#define MAX 15
 
 int main(){
     //get data
