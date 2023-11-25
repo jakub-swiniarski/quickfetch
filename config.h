@@ -21,7 +21,7 @@ static const char ASCII[HEIGHT][WIDTH]={
 
 //system info
 static const char LABELS[HEIGHT][MAX]={
-    "IDK ",
+    "CPU TEMP: ",
     "IDK ",
     "IDK ",
     "IDK ",
