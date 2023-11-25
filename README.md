@@ -2,7 +2,7 @@
 ![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/30c6bc6c-5967-4c4c-9852-548f6b3da1c7)
 
 ## Example
-![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/a9b1dbcc-a1fb-46d2-aed7-6349c6949508)
+![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/59330100-2d9f-4b8a-93f3-5c66a2e338ad)
 
 ## How to install?
 ### Compile & install
