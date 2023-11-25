@@ -25,3 +25,6 @@ Go inside the cloned repository and run: <br/>
 ```shell
 sudo make clean uninstall
 ```
+
+## Configuration
+You can configure QuickFetch by editing the source code. 
