@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/statvfs.h>
 #include <sys/utsname.h>
 #include "config.h"
 
@@ -14,12 +15,12 @@ int main(){
     char ch;
 
     //kernel
-    struct utsname buffer;
-    if(uname(&buffer)!=0){
+    struct utsname buffer_utsname;
+    if(uname(&buffer_utsname)!=0){
         perror("uname");
         exit(EXIT_FAILURE);
     }
-    strcpy(data[0],buffer.release);
+    strcpy(data[0],buffer_utsname.release);
 
     //uptime
     fptr=fopen(UPTIME,"r");
@@ -45,6 +46,14 @@ int main(){
     sprintf(data[3],"%d",100*(mem_total-mem_available)/mem_total);
     fclose(fptr);
     strcat(data[3],"% used");
+
+    //disk
+    struct statvfs buffer_statvfs;
+    statvfs(DISK,&buffer_statvfs); //check if no error (TODO)
+    unsigned long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
+    unsigned long disk_available=buffer_statvfs.f_bavail*buffer_statvfs.f_frsize;
+    sprintf(data[4],"%lu",100*disk_available/disk_total);
+    strcat(data[4],"% used");   
 
     //battery
     fptr=fopen(BATTERY,"r");
