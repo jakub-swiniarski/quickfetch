@@ -1,3 +1,5 @@
+#define VERSION "1.0.0"
+
 //colors
 #define ASCII_COLOR "\033[22;36m"
 #define TEXT_COLOR "\033[0m"
@@ -24,10 +26,10 @@ static const char LABELS[HEIGHT][MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",
-    "LOCAL IP: ",
     "MEMORY: ",
     "DISK: ",
-    "Battery: "
+    "BATTERY: ",
+    "QF VERSION: "
 };
 static const char* UPTIME="/proc/uptime";
 static const char* CPU_TEMP="/sys/class/thermal/thermal_zone9/temp"; //find the thermal zone whose type is x86_pkg_temp

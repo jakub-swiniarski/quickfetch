@@ -4,7 +4,6 @@
 #include "config.h"
 
 int main(){
-    //get data
     char data[HEIGHT][MAX];
     for(unsigned short i=0; i<HEIGHT; i++)
         sprintf(data[i]," ");
@@ -32,21 +31,23 @@ int main(){
 
     //battery
     fptr=fopen(BATTERY,"r");
-    fgets(data[6],MAX,fptr); 
+    fgets(data[5],MAX,fptr); 
     fclose(fptr);
     for(unsigned short i=0; i<MAX; i++){
-        if(data[6][i]=='\n'){
-            data[6][i]='%';
+        if(data[5][i]=='\n'){
+            data[5][i]='%';
             break;
         }
     }
 
-    //print ascii logo and data
+    //quickfetch version
+    strcpy(data[6],VERSION);
+
     for(unsigned short i=0; i<HEIGHT; i++){
-        //logo
+        //print logo
         printf(ASCII_COLOR"%s", ASCII[i]);
         
-        //data
+        //print data
         printf(" %s",LABELS[i]);
         printf(TEXT_COLOR);
         printf("%s\n",data[i]);
