@@ -38,6 +38,14 @@ int main(){
     fclose(fptr);
     strcat(data[2]," °C");
 
+    //memory
+    int mem_total, mem_free, mem_available;
+    fptr=fopen(MEMORY,"r");
+    fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
+    sprintf(data[3],"%d",100*(mem_total-mem_available)/mem_total);
+    fclose(fptr);
+    strcat(data[3],"% used");
+
     //battery
     fptr=fopen(BATTERY,"r");
     fgets(data[5],MAX,fptr); 
