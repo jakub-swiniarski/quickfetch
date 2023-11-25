@@ -20,6 +20,7 @@ int main(){
     temp=atoi(data[1]);
     sprintf(data[1],"%d",temp/60);
     fclose(fptr);
+    strcat(data[1]," mins");
 
     //cpu temp
     fptr=fopen(CPU_TEMP,"r");
@@ -27,6 +28,7 @@ int main(){
     temp=atoi(data[2]);
     sprintf(data[2],"%d",temp/1000);
     fclose(fptr);
+    strcat(data[2]," C");
 
     //battery
     fptr=fopen(BATTERY,"r");
