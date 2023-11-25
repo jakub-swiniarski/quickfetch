@@ -6,9 +6,8 @@ int main(){
         for(int j=0; j<WIDTH; j++){
             printf("%c"ASCII_COLOR, ASCII[i][j]);
         }
-        printf("\n");
+        printf("\n"TEXT_COLOR);
     }
-    printf(TEXT_COLOR);
 
     return 0;
 }
