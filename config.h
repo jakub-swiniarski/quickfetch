@@ -18,12 +18,12 @@ static const char ASCII[HEIGHT][WIDTH]={
 
 //system info
 static const char LABELS[HEIGHT][15]={
-    "IDK",
-    "IDK",
-    "IDK",
-    "IDK",
-    "IDK",
-    "IDK",
+    "IDK ",
+    "IDK ",
+    "IDK ",
+    "IDK ",
+    "IDK ",
+    "IDK ",
     "Battery: "
 };
 
