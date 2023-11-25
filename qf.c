@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/utsname.h>
 #include "config.h"
 
 int main(){
@@ -11,6 +12,14 @@ int main(){
     FILE *fptr;
     int temp; //temporary
     char ch;
+
+    //kernel
+    struct utsname buffer;
+    if(uname(&buffer)!=0){
+        perror("uname");
+        exit(EXIT_FAILURE);
+    }
+    strcpy(data[0],buffer.release);
 
     //uptime
     fptr=fopen(UPTIME,"r");
