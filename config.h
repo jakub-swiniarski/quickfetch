@@ -1,4 +1,4 @@
-#define VERSION "1.0.1"
+#define VERSION "1.0.2"
 
 //colors
 #define ASCII_COLOR "\033[22;36m"
