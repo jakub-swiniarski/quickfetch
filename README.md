@@ -4,7 +4,7 @@
 ![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/30c6bc6c-5967-4c4c-9852-548f6b3da1c7)
 
 ## Example
-![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/59330100-2d9f-4b8a-93f3-5c66a2e338ad)
+![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/d59310ac-d302-4aa5-8610-f38f2d562612)
 
 ## How to install?
 ### Compile & install
