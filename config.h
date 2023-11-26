@@ -1,4 +1,4 @@
-#define VERSION "1.0.0"
+#define VERSION "1.0.1"
 
 //colors
 #define ASCII_COLOR "\033[22;36m"
@@ -26,7 +26,7 @@ static const char LABELS[HEIGHT][MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",
-    "MEMORY: ",
+    "RAM: ",
     "DISK: ",
     "BATTERY: ",
     "QF VERSION: "
