@@ -1,17 +1,17 @@
-#define VERSION "1.0.2"
+#define VERSION "1.0.3"
 
 //colors
-#define ASCII_COLOR "\033[22;36m"
+#define LOGO_COLOR "\033[22;36m"
 #define TEXT_COLOR "\033[0m"
 
 //ascii array size
-#define HEIGHT 7
-#define WIDTH 15
+#define LOGO_HEIGHT 7
+#define LOGO_WIDTH 15
 
 //max label and data length
 #define MAX 20
 
-static const char ASCII[HEIGHT][WIDTH]={   
+static const char LOGO[LOGO_HEIGHT][LOGO_WIDTH]={   
     "      /\\      ",
     "     /  \\     ",
     "    /    \\    ",
@@ -22,7 +22,7 @@ static const char ASCII[HEIGHT][WIDTH]={
 };
 
 //system info
-static const char LABELS[HEIGHT][MAX]={
+static const char LABELS[LOGO_HEIGHT][MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",

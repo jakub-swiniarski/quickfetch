@@ -6,8 +6,8 @@
 #include "config.h"
 
 int main(){
-    char data[HEIGHT][MAX];
-    for(unsigned short i=0; i<HEIGHT; i++)
+    char data[LOGO_HEIGHT][MAX];
+    for(unsigned short i=0; i<LOGO_HEIGHT; i++)
         sprintf(data[i]," ");
 
     FILE *fptr;
@@ -16,11 +16,10 @@ int main(){
 
     //kernel
     struct utsname buffer_utsname;
-    if(uname(&buffer_utsname)!=0){
-        perror("uname");
-        exit(EXIT_FAILURE);
-    }
-    strcpy(data[0],buffer_utsname.release);
+    if(uname(&buffer_utsname)!=0)
+        strcpy(data[0],"ERROR");
+    else
+        strcpy(data[0],buffer_utsname.release);
 
     //uptime
     fptr=fopen(UPTIME,"r");
@@ -85,9 +84,9 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(unsigned short i=0; i<HEIGHT; i++){
+    for(unsigned short i=0; i<LOGO_HEIGHT; i++){
         //print logo
-        printf(ASCII_COLOR"%s", ASCII[i]);
+        printf(LOGO_COLOR"%s", LOGO[i]);
         
         //print data
         printf(" %s",LABELS[i]);
