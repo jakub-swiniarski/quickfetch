@@ -16,11 +16,10 @@ int main(){
 
     //kernel
     struct utsname buffer_utsname;
-    if(uname(&buffer_utsname)!=0){
-        perror("uname");
-        exit(EXIT_FAILURE);
-    }
-    strcpy(data[0],buffer_utsname.release);
+    if(uname(&buffer_utsname)!=0)
+        strcpy(data[0],"ERROR");
+    else
+        strcpy(data[0],buffer_utsname.release);
 
     //uptime
     fptr=fopen(UPTIME,"r");
