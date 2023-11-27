@@ -6,8 +6,8 @@
 #include "config.h"
 
 int main(){
-    char data[HEIGHT][MAX];
-    for(unsigned short i=0; i<HEIGHT; i++)
+    char data[LOGO_HEIGHT][MAX];
+    for(unsigned short i=0; i<LOGO_HEIGHT; i++)
         sprintf(data[i]," ");
 
     FILE *fptr;
@@ -84,9 +84,9 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(unsigned short i=0; i<HEIGHT; i++){
+    for(unsigned short i=0; i<LOGO_HEIGHT; i++){
         //print logo
-        printf(ASCII_COLOR"%s", ASCII[i]);
+        printf(LOGO_COLOR"%s", LOGO[i]);
         
         //print data
         printf(" %s",LABELS[i]);
