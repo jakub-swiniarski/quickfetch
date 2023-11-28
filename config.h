@@ -1,4 +1,4 @@
-#define VERSION "1.0.3"
+#define VERSION "1.0.4"
 
 //colors
 #define LOGO_COLOR "\033[22;36m"
@@ -10,6 +10,10 @@
 
 //max label and data length
 #define MAX 20
+
+typedef unsigned int ui;
+typedef unsigned short us;
+typedef unsigned long ul;
 
 static const char LOGO[LOGO_HEIGHT][LOGO_WIDTH]={   
     "      /\\      ",
