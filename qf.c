@@ -59,16 +59,21 @@ int main(){
         strcat(data[2]," °C");
     }
 
-    //memory
+    //ram
     fptr=fopen(MEMORY,"r");
     if(fptr==NULL)
         strcpy(data[3],"ERROR");
     else{
-        int mem_total, mem_free, mem_available; 
-        fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
-        sprintf(data[3],"%d",100*(mem_total-mem_available)/mem_total);
-        fclose(fptr);
-        strcat(data[3],"% used");
+        ui mem_total, mem_free, mem_available, mem_used; 
+        fscanf(fptr,"MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB",&mem_total,&mem_free,&mem_available); 
+        fclose(fptr); 
+        mem_used=mem_total-mem_available;
+        char percentage_used[4];
+        sprintf(percentage_used,"%u",100*mem_used/mem_total);
+        sprintf(data[3],"%u",mem_used/1000);
+        strcat(data[3]," MB used (");
+        strcat(data[3],percentage_used);
+        strcat(data[3], "%)");
     }
 
     //disk
