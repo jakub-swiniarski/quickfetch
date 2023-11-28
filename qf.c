@@ -11,7 +11,6 @@ int main(){
         sprintf(data[i]," ");
 
     FILE *fptr;
-    int temp; //temporary
     char ch;
 
     //kernel
@@ -28,10 +27,24 @@ int main(){
     else{
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
-        temp=atoi(data[1]);
-        sprintf(data[1],"%d",temp/60);
+        unsigned int uptime=atoi(data[1]);
+        uptime=uptime/60;
+        if(uptime<60){
+            sprintf(data[1],"%u",uptime);
+            strcat(data[1]," mins");
+        }
+        else{
+            unsigned int hours=uptime/60;
+            unsigned int mins=uptime-hours*60;
+            sprintf(data[1],"%u",hours);
+            strcat(data[1]," hours ");
+            char mins_string[3];
+            sprintf(mins_string,"%u",mins);
+            strcat(data[1],mins_string);
+            strcat(data[1]," mins");
+        }
+            
         fclose(fptr);
-        strcat(data[1]," mins");
     }
 
     //cpu temp
@@ -40,7 +53,7 @@ int main(){
         strcpy(data[2],"ERROR");
     else{
         fgets(data[2], MAX, fptr);
-        temp=atoi(data[2]);
+        int temp=atoi(data[2]);
         sprintf(data[2],"%d",temp/1000);
         fclose(fptr);
         strcat(data[2]," °C");
