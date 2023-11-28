@@ -11,6 +11,10 @@
 //max label and data length
 #define MAX 20
 
+typedef unsigned int ui;
+typedef unsigned short us;
+typedef unsigned long ul;
+
 static const char LOGO[LOGO_HEIGHT][LOGO_WIDTH]={   
     "      /\\      ",
     "     /  \\     ",
