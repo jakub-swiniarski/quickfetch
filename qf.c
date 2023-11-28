@@ -7,7 +7,7 @@
 
 int main(){
     char data[LOGO_HEIGHT][MAX];
-    for(unsigned short i=0; i<LOGO_HEIGHT; i++)
+    for(us i=0; i<LOGO_HEIGHT; i++)
         sprintf(data[i]," ");
 
     FILE *fptr;
@@ -27,15 +27,15 @@ int main(){
     else{
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
-        unsigned int uptime=atoi(data[1]);
+        ui uptime=atoi(data[1]);
         uptime=uptime/60;
         if(uptime<60){
             sprintf(data[1],"%u",uptime);
             strcat(data[1]," mins");
         }
         else{
-            unsigned int hours=uptime/60;
-            unsigned int mins=uptime-hours*60;
+            ui hours=uptime/60;
+            ui mins=uptime-hours*60;
             sprintf(data[1],"%u",hours);
             strcat(data[1]," hours ");
             char mins_string[3];
@@ -74,8 +74,8 @@ int main(){
     //disk
     struct statvfs buffer_statvfs;
     statvfs(DISK,&buffer_statvfs); //check if no error (TODO)
-    unsigned long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
-    unsigned long disk_available=buffer_statvfs.f_bavail*buffer_statvfs.f_frsize;
+    ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
+    ul disk_available=buffer_statvfs.f_bavail*buffer_statvfs.f_frsize;
     sprintf(data[4],"%lu",100*(disk_total-disk_available)/disk_total);
     strcat(data[4],"% used");   
 
@@ -86,7 +86,7 @@ int main(){
     else{
         fgets(data[5],MAX,fptr); 
         fclose(fptr);
-        for(unsigned short i=0; i<MAX; i++){
+        for(us i=0; i<MAX; i++){
             if(data[5][i]=='\n'){
                 data[5][i]='%';
                 break;
@@ -97,7 +97,7 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(unsigned short i=0; i<LOGO_HEIGHT; i++){
+    for(us i=0; i<LOGO_HEIGHT; i++){
         //print logo
         printf(LOGO_COLOR"%s", LOGO[i]);
         
