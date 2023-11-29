@@ -70,8 +70,15 @@ int main(){
         mem_used=mem_total-mem_available;
         char percentage_used[4];
         sprintf(percentage_used,"%u",100*mem_used/mem_total);
-        sprintf(data[3],"%u",mem_used/1024);
-        strcat(data[3]," MiB used (");
+        mem_used=mem_used/1024;
+        if(mem_used>1024){
+            sprintf(data[3],"%.2f",(float)mem_used/1024);
+            strcat(data[3]," GiB used ("); 
+        } 
+        else{
+            sprintf(data[3],"%u",mem_used);
+            strcat(data[3]," MiB used ("); 
+        }
         strcat(data[3],percentage_used);
         strcat(data[3], "%)");
     }
