@@ -1,4 +1,4 @@
-#define VERSION "1.0.6"
+#define VERSION "1.0.7"
 
 //colors
 #define LOGO_COLOR "\033[22;36m"
