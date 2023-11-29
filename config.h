@@ -1,4 +1,4 @@
-#define VERSION "1.0.6"
+#define VERSION "1.0.7"
 
 //colors
 #define LOGO_COLOR "\033[22;36m"
@@ -30,7 +30,7 @@ static const char LABELS[LOGO_HEIGHT][MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",
-    "RAM: ",
+    "MEMORY: ",
     "DISK: ",
     "BATTERY: ",
     "QF VERSION: "

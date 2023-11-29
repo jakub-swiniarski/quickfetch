@@ -31,17 +31,17 @@ int main(){
         uptime=uptime/60;
         if(uptime<60){
             sprintf(data[1],"%u",uptime);
-            strcat(data[1]," mins");
+            strcat(data[1]," min");
         }
         else{
             ui hours=uptime/60;
             ui mins=uptime-hours*60;
             sprintf(data[1],"%u",hours);
-            strcat(data[1]," hours ");
+            strcat(data[1]," h ");
             char mins_string[3];
             sprintf(mins_string,"%u",mins);
             strcat(data[1],mins_string);
-            strcat(data[1]," mins");
+            strcat(data[1]," min");
         }
             
         fclose(fptr);
@@ -59,7 +59,7 @@ int main(){
         strcat(data[2]," °C");
     }
 
-    //ram
+    //memory
     fptr=fopen(MEMORY,"r");
     if(fptr==NULL)
         strcpy(data[3],"ERROR");
@@ -70,24 +70,34 @@ int main(){
         mem_used=mem_total-mem_available;
         char percentage_used[4];
         sprintf(percentage_used,"%u",100*mem_used/mem_total);
-        sprintf(data[3],"%u",mem_used/1024);
-        strcat(data[3]," MB used (");
+        mem_used=mem_used/1024;
+        if(mem_used>1024){
+            sprintf(data[3],"%.2f",(float)mem_used/1024);
+            strcat(data[3]," GiB used ("); 
+        } 
+        else{
+            sprintf(data[3],"%u",mem_used);
+            strcat(data[3]," MiB used ("); 
+        }
         strcat(data[3],percentage_used);
         strcat(data[3], "%)");
     }
 
     //disk
     struct statvfs buffer_statvfs;
-    statvfs(DISK,&buffer_statvfs); //check if no error (TODO)
-    ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
-    ul disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
-    ul disk_used=disk_total-disk_free;
-    char percentage_used[4];
-    sprintf(percentage_used,"%lu",100*disk_used/disk_total);
-    sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
-    strcat(data[4]," GB used (");
-    strcat(data[4],percentage_used);
-    strcat(data[4],"%)");
+    if(statvfs(DISK,&buffer_statvfs)!=0)
+        strcpy(data[4],"ERROR");
+    else{
+        ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
+        ul disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
+        ul disk_used=disk_total-disk_free;
+        char percentage_used[4];
+        sprintf(percentage_used,"%lu",100*disk_used/disk_total);
+        sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
+        strcat(data[4]," GiB used (");
+        strcat(data[4],percentage_used);
+        strcat(data[4],"%)");
+    }
 
     //battery
     fptr=fopen(BATTERY,"r");
