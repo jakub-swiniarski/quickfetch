@@ -30,7 +30,7 @@ static const char LABELS[LOGO_HEIGHT][MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",
-    "RAM: ",
+    "MEMORY: ",
     "DISK: ",
     "BATTERY: ",
     "QF VERSION: "
