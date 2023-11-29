@@ -71,7 +71,7 @@ int main(){
         char percentage_used[4];
         sprintf(percentage_used,"%u",100*mem_used/mem_total);
         sprintf(data[3],"%u",mem_used/1024);
-        strcat(data[3]," MB used (");
+        strcat(data[3]," MiB used (");
         strcat(data[3],percentage_used);
         strcat(data[3], "%)");
     }
@@ -85,7 +85,7 @@ int main(){
     char percentage_used[4];
     sprintf(percentage_used,"%lu",100*disk_used/disk_total);
     sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
-    strcat(data[4]," GB used (");
+    strcat(data[4]," GiB used (");
     strcat(data[4],percentage_used);
     strcat(data[4],"%)");
 
