@@ -85,16 +85,19 @@ int main(){
 
     //disk
     struct statvfs buffer_statvfs;
-    statvfs(DISK,&buffer_statvfs); //check if no error (TODO)
-    ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
-    ul disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
-    ul disk_used=disk_total-disk_free;
-    char percentage_used[4];
-    sprintf(percentage_used,"%lu",100*disk_used/disk_total);
-    sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
-    strcat(data[4]," GiB used (");
-    strcat(data[4],percentage_used);
-    strcat(data[4],"%)");
+    if(statvfs(DISK,&buffer_statvfs)!=0)
+        strcpy(data[4],"ERROR");
+    else{
+        ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
+        ul disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
+        ul disk_used=disk_total-disk_free;
+        char percentage_used[4];
+        sprintf(percentage_used,"%lu",100*disk_used/disk_total);
+        sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
+        strcat(data[4]," GiB used (");
+        strcat(data[4],percentage_used);
+        strcat(data[4],"%)");
+    }
 
     //battery
     fptr=fopen(BATTERY,"r");
