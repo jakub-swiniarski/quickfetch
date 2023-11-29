@@ -31,17 +31,17 @@ int main(){
         uptime=uptime/60;
         if(uptime<60){
             sprintf(data[1],"%u",uptime);
-            strcat(data[1]," mins");
+            strcat(data[1]," min");
         }
         else{
             ui hours=uptime/60;
             ui mins=uptime-hours*60;
             sprintf(data[1],"%u",hours);
-            strcat(data[1]," hours ");
+            strcat(data[1]," h ");
             char mins_string[3];
             sprintf(mins_string,"%u",mins);
             strcat(data[1],mins_string);
-            strcat(data[1]," mins");
+            strcat(data[1]," min");
         }
             
         fclose(fptr);
