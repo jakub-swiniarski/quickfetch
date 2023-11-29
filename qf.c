@@ -59,7 +59,7 @@ int main(){
         strcat(data[2]," °C");
     }
 
-    //ram
+    //memory
     fptr=fopen(MEMORY,"r");
     if(fptr==NULL)
         strcpy(data[3],"ERROR");
