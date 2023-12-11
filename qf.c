@@ -7,11 +7,7 @@
 
 int main(){
     char data[LOGO_HEIGHT][MAX];
-    for(us i=0; i<LOGO_HEIGHT; i++)
-        sprintf(data[i]," ");
-
     FILE *fptr;
-    char ch;
 
     //kernel
     struct utsname buffer_utsname;
@@ -25,6 +21,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[1],"ERROR");
     else{
+        char ch;
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
         ui uptime=atoi(data[1]);
@@ -43,7 +40,6 @@ int main(){
             strcat(data[1],mins_string);
             strcat(data[1]," min");
         }
-            
         fclose(fptr);
     }
 
