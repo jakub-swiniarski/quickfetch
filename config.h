@@ -1,7 +1,7 @@
 #define VERSION "1.0.7"
 
 //colors
-#define LOGO_COLOR "\033[22;36m"
+#define LOGO_COLOR "\033[36m"
 #define TEXT_COLOR "\033[0m"
 
 //ascii array size
