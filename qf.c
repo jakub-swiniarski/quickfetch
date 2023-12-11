@@ -22,6 +22,7 @@ int main(){
         strcpy(data[1],"ERROR");
     else{
         char ch;
+        strcpy(data[1]," ");
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
         ui uptime=atoi(data[1]);
