@@ -122,9 +122,8 @@ int main(){
         printf(LOGO_COLOR"%s", LOGO[i]);
         
         //print data
-        printf(" %s",LABELS[i]);
-        printf(TEXT_COLOR);
-        printf("%s\n",data[i]);
+        printf("%s",LABELS[i]);
+        printf(TEXT_COLOR"%s\n",data[i]);
     }
 
     return 0;
