@@ -6,7 +6,7 @@
 #include "config.h"
 
 int main(){
-    char data[ROWS_MAX][DATA_MAX];
+    char data[ROWS_MAX][DATA_LENGTH];
     FILE *fptr;
 
     //kernel
@@ -49,7 +49,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[2],"ERROR");
     else{
-        fgets(data[2], DATA_MAX, fptr);
+        fgets(data[2], DATA_LENGTH, fptr);
         int temp=atoi(data[2]);
         sprintf(data[2],"%d",temp/1000);
         fclose(fptr);
@@ -101,9 +101,9 @@ int main(){
     if(fptr==NULL)
         strcpy(data[5],"ERROR");
     else{
-        fgets(data[5],DATA_MAX,fptr); 
+        fgets(data[5],DATA_LENGTH,fptr); 
         fclose(fptr);
-        for(us i=0; i<DATA_MAX; i++){
+        for(us i=0; i<DATA_LENGTH; i++){
             if(data[5][i]=='\n'){
                 data[5][i]='%';
                 break;
