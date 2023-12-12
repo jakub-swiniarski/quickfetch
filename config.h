@@ -5,7 +5,7 @@
 
 #define ROWS_MAX 7
 
-#define DATA_MAX 20
+#define DATA_LENGTH 20
 
 typedef unsigned int ui;
 typedef unsigned short us;
