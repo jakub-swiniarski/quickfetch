@@ -6,7 +6,7 @@
 #include "config.h"
 
 int main(){
-    char data[LOGO_HEIGHT][MAX];
+    char data[ROWS_MAX][DATA_MAX];
     FILE *fptr;
 
     //kernel
@@ -49,7 +49,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[2],"ERROR");
     else{
-        fgets(data[2], MAX, fptr);
+        fgets(data[2], DATA_MAX, fptr);
         int temp=atoi(data[2]);
         sprintf(data[2],"%d",temp/1000);
         fclose(fptr);
@@ -101,9 +101,9 @@ int main(){
     if(fptr==NULL)
         strcpy(data[5],"ERROR");
     else{
-        fgets(data[5],MAX,fptr); 
+        fgets(data[5],DATA_MAX,fptr); 
         fclose(fptr);
-        for(us i=0; i<MAX; i++){
+        for(us i=0; i<DATA_MAX; i++){
             if(data[5][i]=='\n'){
                 data[5][i]='%';
                 break;
@@ -114,7 +114,7 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(us i=0; i<LOGO_HEIGHT; i++){
+    for(us i=0; i<ROWS_MAX; i++){
         //print logo
         printf(LOGO_COLOR"%s", LOGO[i]);
         
