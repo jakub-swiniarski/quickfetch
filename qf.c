@@ -6,12 +6,8 @@
 #include "config.h"
 
 int main(){
-    char data[LOGO_HEIGHT][MAX];
-    for(us i=0; i<LOGO_HEIGHT; i++)
-        sprintf(data[i]," ");
-
+    char data[ROWS_MAX][DATA_LENGTH];
     FILE *fptr;
-    char ch;
 
     //kernel
     struct utsname buffer_utsname;
@@ -25,6 +21,8 @@ int main(){
     if(fptr==NULL)
         strcpy(data[1],"ERROR");
     else{
+        char ch;
+        strcpy(data[1]," ");
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
         ui uptime=atoi(data[1]);
@@ -43,7 +41,6 @@ int main(){
             strcat(data[1],mins_string);
             strcat(data[1]," min");
         }
-            
         fclose(fptr);
     }
 
@@ -52,7 +49,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[2],"ERROR");
     else{
-        fgets(data[2], MAX, fptr);
+        fgets(data[2], DATA_LENGTH, fptr);
         int temp=atoi(data[2]);
         sprintf(data[2],"%d",temp/1000);
         fclose(fptr);
@@ -104,9 +101,9 @@ int main(){
     if(fptr==NULL)
         strcpy(data[5],"ERROR");
     else{
-        fgets(data[5],MAX,fptr); 
+        fgets(data[5],DATA_LENGTH,fptr); 
         fclose(fptr);
-        for(us i=0; i<MAX; i++){
+        for(us i=0; i<DATA_LENGTH; i++){
             if(data[5][i]=='\n'){
                 data[5][i]='%';
                 break;
@@ -117,14 +114,13 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(us i=0; i<LOGO_HEIGHT; i++){
+    for(us i=0; i<ROWS_MAX; i++){
         //print logo
         printf(LOGO_COLOR"%s", LOGO[i]);
         
         //print data
-        printf(" %s",LABELS[i]);
-        printf(TEXT_COLOR);
-        printf("%s\n",data[i]);
+        printf("%s",LABELS[i]);
+        printf(TEXT_COLOR"%s\n",data[i]);
     }
 
     return 0;
