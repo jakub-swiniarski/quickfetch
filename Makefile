@@ -17,7 +17,7 @@ run: qf
 	./qf
 
 install: qf
-	cp qf /usr/bin/
+	cp qf /usr/local/bin/
 
 uninstall:
-	rm /usr/bin/qf
+	rm /usr/local/bin/qf
