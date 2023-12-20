@@ -1,4 +1,4 @@
-#define VERSION "1.0.9"
+#define VERSION "1.0.10"
 
 #define LOGO_COLOR "\033[36m"
 #define TEXT_COLOR "\033[0m"
@@ -6,10 +6,6 @@
 #define ROWS_MAX 7
 
 #define DATA_LENGTH 20
-
-typedef unsigned int ui;
-typedef unsigned short us;
-typedef unsigned long ul;
 
 static const char LOGO[ROWS_MAX][15]={   
     "      /\\      ",
