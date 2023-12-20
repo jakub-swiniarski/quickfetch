@@ -25,15 +25,15 @@ int main(){
         strcpy(data[1]," ");
         while((ch=fgetc(fptr))!=' ')
             strncat(data[1],&ch,1);
-        ui uptime=atoi(data[1]);
+        int uptime=atoi(data[1]);
         uptime=uptime/60;
         if(uptime<60){
             sprintf(data[1],"%u",uptime);
             strcat(data[1]," min");
         }
         else{
-            ui hours=uptime/60;
-            ui mins=uptime-hours*60;
+            int hours=uptime/60;
+            int mins=uptime-hours*60;
             sprintf(data[1],"%u",hours);
             strcat(data[1]," h ");
             char mins_string[3];
@@ -61,7 +61,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[3],"ERROR");
     else{
-        ui mem_total, mem_free, mem_available, mem_used; 
+        int mem_total, mem_free, mem_available, mem_used; 
         fscanf(fptr,"MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB",&mem_total,&mem_free,&mem_available); 
         fclose(fptr); 
         mem_used=mem_total-mem_available;
@@ -85,12 +85,12 @@ int main(){
     if(statvfs(DISK,&buffer_statvfs)!=0)
         strcpy(data[4],"ERROR");
     else{
-        ul disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
-        ul disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
-        ul disk_used=disk_total-disk_free;
+        long long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
+        long long disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
+        long long disk_used=disk_total-disk_free;
         char percentage_used[4];
-        sprintf(percentage_used,"%lu",100*disk_used/disk_total);
-        sprintf(data[4],"%lu",disk_used/(1024*1024*1024));
+        sprintf(percentage_used,"%lld",100*disk_used/disk_total);
+        sprintf(data[4],"%lld",disk_used/(1024*1024*1024));
         strcat(data[4]," GiB used (");
         strcat(data[4],percentage_used);
         strcat(data[4],"%)");
@@ -103,7 +103,7 @@ int main(){
     else{
         fgets(data[5],DATA_LENGTH,fptr); 
         fclose(fptr);
-        for(us i=0; i<DATA_LENGTH; i++){
+        for(int i=0; i<DATA_LENGTH; i++){
             if(data[5][i]=='\n'){
                 data[5][i]='%';
                 break;
@@ -114,7 +114,7 @@ int main(){
     //quickfetch version
     strcpy(data[6],VERSION);
 
-    for(us i=0; i<ROWS_MAX; i++){
+    for(int i=0; i<ROWS_MAX; i++){
         //print logo
         printf(LOGO_COLOR"%s", LOGO[i]);
         

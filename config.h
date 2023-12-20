@@ -7,10 +7,6 @@
 
 #define DATA_LENGTH 20
 
-typedef unsigned int ui;
-typedef unsigned short us;
-typedef unsigned long ul;
-
 static const char LOGO[ROWS_MAX][15]={   
     "      /\\      ",
     "     /  \\     ",
