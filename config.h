@@ -28,7 +28,7 @@ static const char LABELS[ROWS_MAX][13]={
     "QF VERSION: "
 };
 static const char *UPTIME="/proc/uptime";
-static const char *CPU_TEMP="/sys/class/thermal/thermal_zone9/temp"; //find the thermal zone whose type is x86_pkg_temp
+static const char *CPU_TEMP="/sys/class/thermal/thermal_zone0/temp";
 static const char *MEMORY="/proc/meminfo";
 static const char *DISK="/";
 static const char *BATTERY="/sys/class/power_supply/BAT0/capacity";
