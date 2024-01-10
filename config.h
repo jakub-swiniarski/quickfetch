@@ -1,10 +1,7 @@
-#define VERSION "1.0.10"
-
 #define LOGO_COLOR "\033[36m"
 #define TEXT_COLOR "\033[0m"
 
 #define ROWS_MAX 7
-
 #define DATA_LENGTH 20
 
 static const char *LOGO[15]={   
@@ -20,12 +17,12 @@ static const char *LOGO[15]={
 //system info
 static const char *LABELS[ROWS_MAX]={
     "KERNEL: ",
+    "TIME: ",
     "UPTIME: ",
     "CPU TEMP: ",
     "MEMORY: ",
     "DISK: ",
-    "BATTERY: ",
-    "QF VERSION: "
+    "BATTERY: "
 };
 static const char *UPTIME="/proc/uptime";
 static const char *CPU_TEMP="/sys/class/thermal/thermal_zone0/temp";
