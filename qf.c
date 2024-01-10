@@ -94,12 +94,9 @@ int main(){
         long long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
         long long disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
         long long disk_used=disk_total-disk_free;
-        char percentage_used[4];
-        sprintf(percentage_used,"%lld",100*disk_used/disk_total);
-        sprintf(data[5],"%lld",disk_used/(1024*1024*1024));
-        strcat(data[5]," GiB used (");
-        strcat(data[5],percentage_used);
-        strcat(data[5],"%)");
+        int disk_used_gib=disk_used/(1024*1024*1024);
+        int percentage_used=100*disk_used/disk_total;
+        sprintf(data[5],"%d Gib used (%d%%)",disk_used_gib,percentage_used);
     }
 
     //battery
