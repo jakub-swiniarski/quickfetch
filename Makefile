@@ -1,12 +1,12 @@
-SOURCES=$(wildcard *.c)
-HEADERS=$(wildcard *.h)
-OBJECTS=$(patsubst %.c,%.o,$(SOURCES))
+SOURCES=qf.c
+HEADERS=config.h
+OBJECTS=$(SOURCES:.c=.o)
 
 qf: $(OBJECTS)
 	gcc -o qf $(OBJECTS)
 
 $(OBJECTS): $(SOURCES) $(HEADERS)
-	gcc -c $(SOURCES)
+	gcc -c $(SOURCES) -pedantic -Wall -Wno-deprecated-declarations -O2
 
 .PHONY: clean run install uninstall
 

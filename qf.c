@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/statvfs.h>
 #include <sys/utsname.h>
+#include <time.h>
 #include "config.h"
 
 int main(){
@@ -16,30 +17,28 @@ int main(){
     else
         strcpy(data[0],buffer_utsname.release);
 
+    //time
+    time_t now=time(NULL);
+    struct tm *now_tm=localtime(&now);
+	sprintf(data[1],"%02d:%02d",now_tm->tm_hour,now_tm->tm_min);
+
     //uptime
     fptr=fopen(UPTIME,"r");
     if(fptr==NULL)
-        strcpy(data[1],"ERROR");
+        strcpy(data[2],"ERROR");
     else{
         char ch;
-        strcpy(data[1]," ");
+        strcpy(data[2]," ");
         while((ch=fgetc(fptr))!=' ')
-            strncat(data[1],&ch,1);
-        int uptime=atoi(data[1]);
+            strncat(data[2],&ch,1);
+        int uptime=atoi(data[2]);
         uptime=uptime/60;
-        if(uptime<60){
-            sprintf(data[1],"%u",uptime);
-            strcat(data[1]," min");
-        }
+        if(uptime<60)
+            sprintf(data[2],"%u min",uptime);
         else{
             int hours=uptime/60;
             int mins=uptime-hours*60;
-            sprintf(data[1],"%u",hours);
-            strcat(data[1]," h ");
-            char mins_string[3];
-            sprintf(mins_string,"%u",mins);
-            strcat(data[1],mins_string);
-            strcat(data[1]," min");
+            sprintf(data[2],"%u h %u min",hours,mins);
         }
         fclose(fptr);
     }
@@ -47,72 +46,59 @@ int main(){
     //cpu temp
     fptr=fopen(CPU_TEMP,"r");
     if(fptr==NULL)
-        strcpy(data[2],"ERROR");
+        strcpy(data[3],"ERROR");
     else{
-        fgets(data[2], DATA_LENGTH, fptr);
-        int temp=atoi(data[2]);
-        sprintf(data[2],"%d",temp/1000);
+        fgets(data[3], DATA_LENGTH, fptr);
+        int temp=atoi(data[3]);
+        sprintf(data[3],"%d",temp/1000);
         fclose(fptr);
-        strcat(data[2]," °C");
+        strcat(data[3]," °C");
     }
 
     //memory
     fptr=fopen(MEMORY,"r");
     if(fptr==NULL)
-        strcpy(data[3],"ERROR");
+        strcpy(data[4],"ERROR");
     else{
         int mem_total, mem_free, mem_available, mem_used; 
-        fscanf(fptr,"MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB",&mem_total,&mem_free,&mem_available); 
+        fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
         fclose(fptr); 
         mem_used=mem_total-mem_available;
-        char percentage_used[4];
-        sprintf(percentage_used,"%u",100*mem_used/mem_total);
+        int percentage_used=100*mem_used/mem_total;
         mem_used=mem_used/1024;
-        if(mem_used>1024){
-            sprintf(data[3],"%.2f",(float)mem_used/1024);
-            strcat(data[3]," GiB used ("); 
-        } 
-        else{
-            sprintf(data[3],"%u",mem_used);
-            strcat(data[3]," MiB used ("); 
-        }
-        strcat(data[3],percentage_used);
-        strcat(data[3], "%)");
+        if(mem_used>1024)
+            sprintf(data[4],"%.2f GiB used (%u%%)",(float)mem_used/1024,percentage_used);
+        else
+            sprintf(data[4],"%u MiB used (%u)",mem_used,percentage_used);
     }
 
     //disk
     struct statvfs buffer_statvfs;
     if(statvfs(DISK,&buffer_statvfs)!=0)
-        strcpy(data[4],"ERROR");
+        strcpy(data[5],"ERROR");
     else{
         long long disk_total=buffer_statvfs.f_blocks*buffer_statvfs.f_bsize;
         long long disk_free=buffer_statvfs.f_bfree*buffer_statvfs.f_frsize;
         long long disk_used=disk_total-disk_free;
-        char percentage_used[4];
-        sprintf(percentage_used,"%lld",100*disk_used/disk_total);
-        sprintf(data[4],"%lld",disk_used/(1024*1024*1024));
-        strcat(data[4]," GiB used (");
-        strcat(data[4],percentage_used);
-        strcat(data[4],"%)");
+        int disk_used_gib=disk_used/(1024*1024*1024);
+        int percentage_used=100*disk_used/disk_total;
+        sprintf(data[5],"%d Gib used (%d%%)",disk_used_gib,percentage_used);
     }
 
     //battery
     fptr=fopen(BATTERY,"r");
     if(fptr==NULL)
-        strcpy(data[5],"ERROR");
+        strcpy(data[6],"ERROR");
     else{
-        fgets(data[5],DATA_LENGTH,fptr); 
+        fgets(data[6],DATA_LENGTH,fptr); 
         fclose(fptr);
         for(int i=0; i<DATA_LENGTH; i++){
-            if(data[5][i]=='\n'){
-                data[5][i]='%';
+            if(data[6][i]=='\n'){
+                data[6][i]='%';
                 break;
             }
         }
     }
-
-    //quickfetch version
-    strcpy(data[6],VERSION);
 
     for(int i=0; i<ROWS_MAX; i++){
         //print logo
