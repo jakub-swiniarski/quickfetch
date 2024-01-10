@@ -33,19 +33,12 @@ int main(){
             strncat(data[2],&ch,1);
         int uptime=atoi(data[2]);
         uptime=uptime/60;
-        if(uptime<60){
-            sprintf(data[2],"%d",uptime);
-            strcat(data[2]," min");
-        }
+        if(uptime<60)
+            sprintf(data[2],"%u min",uptime);
         else{
             int hours=uptime/60;
             int mins=uptime-hours*60;
-            sprintf(data[2],"%d",hours);
-            strcat(data[2]," h ");
-            char mins_string[12];
-            sprintf(mins_string,"%d",mins);
-            strcat(data[2],mins_string);
-            strcat(data[2]," min");
+            sprintf(data[2],"%u h %u min",hours,mins);
         }
         fclose(fptr);
     }
@@ -71,19 +64,12 @@ int main(){
         fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
         fclose(fptr); 
         mem_used=mem_total-mem_available;
-        char percentage_used[4];
-        sprintf(percentage_used,"%d",100*mem_used/mem_total);
+        int percentage_used=100*mem_used/mem_total;
         mem_used=mem_used/1024;
-        if(mem_used>1024){
-            sprintf(data[4],"%.2f",(float)mem_used/1024);
-            strcat(data[4]," GiB used ("); 
-        } 
-        else{
-            sprintf(data[4],"%d",mem_used);
-            strcat(data[4]," MiB used ("); 
-        }
-        strcat(data[4],percentage_used);
-        strcat(data[4], "%)");
+        if(mem_used>1024)
+            sprintf(data[4],"%.2f GiB used (%u%%)",(float)mem_used/1024,percentage_used);
+        else
+            sprintf(data[4],"%u MiB used (%u)",mem_used,percentage_used);
     }
 
     //disk
