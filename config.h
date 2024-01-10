@@ -7,7 +7,7 @@
 
 #define DATA_LENGTH 20
 
-static const char LOGO[ROWS_MAX][15]={   
+static const char *LOGO[15]={   
     "      /\\      ",
     "     /  \\     ",
     "    /    \\    ",
@@ -18,7 +18,7 @@ static const char LOGO[ROWS_MAX][15]={
 };
 
 //system info
-static const char LABELS[ROWS_MAX][13]={
+static const char *LABELS[ROWS_MAX]={
     "KERNEL: ",
     "UPTIME: ",
     "CPU TEMP: ",
