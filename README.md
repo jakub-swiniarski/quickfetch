@@ -1,7 +1,7 @@
 # QuickFetch - quick system info tool
 
 ## Example
-![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/f63208d4-54b6-4c50-a247-5048ef18d573)
+![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/30a35d6a-3127-4425-b55a-c78be71f3c4a)
 
 ## How to install?
 ### Compile & install
