@@ -50,9 +50,8 @@ int main(){
     else{
         fgets(data[3], DATA_LENGTH, fptr);
         int temp=atoi(data[3]);
-        sprintf(data[3],"%d",temp/1000);
+        sprintf(data[3],"%d °C",temp/1000);
         fclose(fptr);
-        strcat(data[3]," °C");
     }
 
     //memory
@@ -60,7 +59,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[4],"ERROR");
     else{
-        int mem_total, mem_free, mem_available, mem_used; 
+        int mem_total,mem_free,mem_available,mem_used; 
         fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
         fclose(fptr); 
         mem_used=mem_total-mem_available;
@@ -82,7 +81,7 @@ int main(){
         long long disk_used=disk_total-disk_free;
         int disk_used_gib=disk_used/(1024*1024*1024);
         int percentage_used=100*disk_used/disk_total;
-        sprintf(data[5],"%d Gib used (%d%%)",disk_used_gib,percentage_used);
+        sprintf(data[5],"%d GiB used (%d%%)",disk_used_gib,percentage_used);
     }
 
     //battery
