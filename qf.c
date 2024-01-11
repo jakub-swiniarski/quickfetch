@@ -59,7 +59,7 @@ int main(){
     if(fptr==NULL)
         strcpy(data[4],"ERROR");
     else{
-        int mem_total, mem_free, mem_available, mem_used; 
+        int mem_total,mem_free,mem_available,mem_used; 
         fscanf(fptr,"MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB",&mem_total,&mem_free,&mem_available); 
         fclose(fptr); 
         mem_used=mem_total-mem_available;
