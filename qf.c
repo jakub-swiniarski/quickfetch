@@ -50,9 +50,8 @@ int main(){
     else{
         fgets(data[3], DATA_LENGTH, fptr);
         int temp=atoi(data[3]);
-        sprintf(data[3],"%d",temp/1000);
+        sprintf(data[3],"%d °C",temp/1000);
         fclose(fptr);
-        strcat(data[3]," °C");
     }
 
     //memory
