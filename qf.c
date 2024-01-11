@@ -82,7 +82,7 @@ int main(){
         long long disk_used=disk_total-disk_free;
         int disk_used_gib=disk_used/(1024*1024*1024);
         int percentage_used=100*disk_used/disk_total;
-        sprintf(data[5],"%d Gib used (%d%%)",disk_used_gib,percentage_used);
+        sprintf(data[5],"%d GiB used (%d%%)",disk_used_gib,percentage_used);
     }
 
     //battery
