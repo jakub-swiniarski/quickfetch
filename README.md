@@ -29,8 +29,7 @@ You can configure QuickFetch by editing the source code.
 ## How to setup CPU temperature detection?
 ### Find the CPU thermal zone
 ```shell
-cd /sys/class/thermal/
-cat thermal_zone*/type
+cat /sys/class/thermal/thermal_zone*/type
 ```
 Look for x86_pkg_temp (this is your CPU thermal zone).
 
