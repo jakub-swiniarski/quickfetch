@@ -68,7 +68,7 @@ int main(){
         if(mem_used>1024)
             sprintf(data[4],"%.2f GiB used (%u%%)",(float)mem_used/1024,percentage_used);
         else
-            sprintf(data[4],"%u MiB used (%u)",mem_used,percentage_used);
+            sprintf(data[4],"%u MiB used (%u%%)",mem_used,percentage_used);
     }
 
     //disk
