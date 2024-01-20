@@ -2,7 +2,7 @@
 #define TEXT_COLOR "\033[0m"
 
 #define ROWS_MAX 7
-#define DATA_LENGTH 20
+#define DATA_LENGTH 24
 
 static const char *LOGO[15]={   
     "      /\\      ",
