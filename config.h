@@ -14,7 +14,6 @@ static const char *LOGO[N_ROWS] = {
     "/_-''    ''-_\\"
 };
 
-//system info
 static const char *LABELS[N_ROWS] = {
     "KERNEL: ",
     "TIME: ",
@@ -24,6 +23,7 @@ static const char *LABELS[N_ROWS] = {
     "DISK: ",
     "BATTERY: "
 };
+
 static const char *UPTIME = "/proc/uptime";
 static const char *CPU_TEMP = "/sys/class/thermal/thermal_zone0/temp";
 static const char *MEMORY = "/proc/meminfo";
