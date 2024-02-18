@@ -19,7 +19,7 @@ static void get_time(int *y);
 static void get_uptime(int *y);
 
 /* variables */
-static char data[N_ROWS][DATA_LENGTH];
+static char data[N_ROWS][LEN_DATA];
 
 /* function implementations */
 void get_all(void) {
@@ -39,9 +39,9 @@ void get_battery(int *y) {
     if (fptr == NULL)
         strcpy(data[*y], "ERROR");
     else {
-        fgets(data[*y], DATA_LENGTH, fptr); 
+        fgets(data[*y], LEN_DATA, fptr); 
         fclose(fptr);
-        for(int i = 0; i < DATA_LENGTH; i++){
+        for(int i = 0; i < LEN_DATA; i++){
             if(data[*y][i] == '\n'){
                 data[*y][i] = '%';
                 break;
@@ -96,9 +96,9 @@ void get_memory(int *y) {
 
 void print_all(void) {
     for(int i = 0; i < N_ROWS; i++){
-        printf(LOGO_COLOR "%s", LOGO[i]);
+        printf(COL_LOGO "%s", LOGO[i]);
         printf("%s", LABELS[i]);
-        printf(TEXT_COLOR "%s\n", data[i]);
+        printf(COL_TEXT "%s\n", data[i]);
     }
 }
 
@@ -107,7 +107,7 @@ void get_temp(int *y) {
     if (fptr == NULL)
         strcpy(data[*y], "ERROR");
     else {
-        fgets(data[*y], DATA_LENGTH, fptr);
+        fgets(data[*y], LEN_DATA, fptr);
         int temp = atoi(data[*y]);
         sprintf(data[*y], "%d °C", temp / 1000);
         fclose(fptr);
