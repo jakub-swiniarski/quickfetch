@@ -1,6 +1,5 @@
 #define COL_LOGO "\033[36m"
 #define COL_TEXT "\033[0m"
-
 #define N_ROWS 7
 #define LEN_DATA 24
 
