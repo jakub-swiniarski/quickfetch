@@ -86,9 +86,9 @@ void get_memory(int *y) {
         int percentage_used = 100 * mem_used / mem_total;
         mem_used = mem_used / 1024;
         if (mem_used > 1024)
-            sprintf(data[*y], "%.2f GiB used (%u%%)", (float)mem_used / 1024, percentage_used);
+            sprintf(data[*y], "%.2f GiB used (%d%%)", (float)mem_used / 1024, percentage_used);
         else
-            sprintf(data[*y], "%u MiB used (%u%%)", mem_used, percentage_used);
+            sprintf(data[*y], "%d MiB used (%d%%)", mem_used, percentage_used);
     }
     ++*y;
 }
@@ -134,11 +134,11 @@ void get_uptime(int *y) {
         int uptime = atoi(data[*y]);
         uptime = uptime / 60;
         if (uptime < 60)
-            sprintf(data[*y], "%u min", uptime);
+            sprintf(data[*y], "%d min", uptime);
         else {
             int hours = uptime / 60;
             int mins = uptime - hours * 60;
-            sprintf(data[*y], "%u h %u min", hours, mins);
+            sprintf(data[*y], "%d h %d min", hours, mins);
         }
         fclose(fptr);
     }
