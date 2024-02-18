@@ -13,10 +13,10 @@ static void get_battery(int *y);
 static void get_disk(int *y);
 static void get_kernel(int *y);
 static void get_memory(int *y);
-static void print_all(void);
 static void get_temp(int *y);
 static void get_time(int *y);
 static void get_uptime(int *y);
+static void print_all(void);
 
 /* variables */
 static char data[N_ROWS][LEN_DATA];
@@ -94,14 +94,6 @@ void get_memory(int *y) {
     ++*y;
 }
 
-void print_all(void) {
-    for(int i = 0; i < N_ROWS; i++){
-        printf(COL_LOGO "%s", LOGO[i]);
-        printf("%s", LABELS[i]);
-        printf(COL_TEXT "%s\n", data[i]);
-    }
-}
-
 void get_temp(int *y) {
     FILE *fptr = fopen(CPU_TEMP, "r");
     if (fptr == NULL)
@@ -146,6 +138,14 @@ void get_uptime(int *y) {
         fclose(fptr);
     }
     ++*y;
+}
+
+void print_all(void) {
+    for(int i = 0; i < N_ROWS; i++){
+        printf(COL_LOGO "%s", LOGO[i]);
+        printf("%s", LABELS[i]);
+        printf(COL_TEXT "%s\n", data[i]);
+    }
 }
 
 int main(void) {
