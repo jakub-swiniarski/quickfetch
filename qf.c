@@ -109,7 +109,7 @@ void get_temp(int *y) {
     else {
         fgets(data[*y], DATA_LENGTH, fptr);
         int temp = atoi(data[*y]);
-        sprintf(data[*y], "%d °C", temp/1000);
+        sprintf(data[*y], "%d °C", temp / 1000);
         fclose(fptr);
     }
     ++*y;
