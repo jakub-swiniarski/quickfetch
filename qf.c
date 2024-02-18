@@ -8,6 +8,7 @@
 #include "config.h"
 
 /* function declarations */
+static void get_all(void);
 static void get_battery(void);
 static void get_disk(void);
 static void get_kernel(void);
@@ -21,6 +22,16 @@ static void get_uptime(void);
 static char data[N_ROWS][DATA_LENGTH];
 
 /* function implementations */
+void get_all(void) {
+    get_kernel();
+    get_time();
+    get_uptime();
+    get_temp();
+    get_memory();
+    get_disk();
+    get_battery();
+}
+
 void get_battery(void) {
     FILE *fptr=fopen(BATTERY,"r");
     if(fptr==NULL)
@@ -128,14 +139,7 @@ void get_uptime(void) {
 }
 
 int main(void) {
-    get_kernel();
-    get_time();
-    get_uptime();
-    get_temp();
-    get_memory();
-    get_disk();
-    get_battery();
-
+    get_all();
     print_all();
 
     return 0;
