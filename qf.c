@@ -5,7 +5,7 @@
 #include <sys/utsname.h>
 #include <time.h>
 
-#include "config.h" /* TODO: check if localtime and other functions throw an error */
+#include "config.h"
 
 /* function declarations */
 static void get_all(void);
@@ -118,7 +118,10 @@ void get_temp(int *y) {
 void get_time(int *y) {
     time_t now = time(NULL);
     struct tm *now_tm = localtime(&now);
-	sprintf(data[*y], "%02d:%02d", now_tm->tm_hour, now_tm->tm_min);
+    if (now_tm == NULL)
+        strcpy(data[*y], "ERROR");
+    else
+	    sprintf(data[*y], "%02d:%02d", now_tm->tm_hour, now_tm->tm_min);
     ++*y;
 }
 
