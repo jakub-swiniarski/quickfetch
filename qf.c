@@ -96,7 +96,6 @@ void get_memory(int *y) {
 void print_all(void) {
     for(int i = 0; i < N_ROWS; i++){
         printf(LOGO_COLOR "%s", LOGO[i]);
-
         printf("%s", LABELS[i]);
         printf(TEXT_COLOR "%s\n", data[i]);
     }
