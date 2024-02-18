@@ -24,6 +24,7 @@ static char data[N_ROWS][DATA_LENGTH];
 /* function implementations */
 void get_all(void) {
     int y = 0;
+    /* put these in the same order as their labels */
     get_kernel(&y);
     get_time(&y);
     get_uptime(&y);
