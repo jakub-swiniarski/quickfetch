@@ -12,6 +12,7 @@ static void get_battery(void);
 static void get_disk(void);
 static void get_kernel(void);
 static void get_memory(void);
+static void print_all(void);
 static void get_temp(void);
 static void get_time(void);
 static void get_uptime(void);
@@ -77,6 +78,15 @@ void get_memory(void) {
 
 }
 
+void print_all(void) {
+    for(int i=0; i<N_ROWS; i++){
+        printf(LOGO_COLOR"%s", LOGO[i]);
+
+        printf("%s",LABELS[i]);
+        printf(TEXT_COLOR"%s\n",data[i]);
+    }
+}
+
 void get_temp(void) {
     FILE *fptr=fopen(CPU_TEMP,"r");
     if(fptr==NULL)
@@ -118,35 +128,15 @@ void get_uptime(void) {
 }
 
 int main(void) {
-    //kernel
     get_kernel();
-
-    //time
     get_time();
-
-    //uptime
     get_uptime();
-
-    //cpu temp
     get_temp();
-
-    //memory
     get_memory();
-
-    //disk
     get_disk();
-
-    //battery
     get_battery();
 
-    for(int i=0; i<N_ROWS; i++){
-        //print logo
-        printf(LOGO_COLOR"%s", LOGO[i]);
-        
-        //print data
-        printf("%s",LABELS[i]);
-        printf(TEXT_COLOR"%s\n",data[i]);
-    }
+    print_all();
 
     return 0;
 }
