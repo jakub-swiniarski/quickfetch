@@ -5,75 +5,79 @@
 #include <sys/utsname.h>
 #include <time.h>
 
-#include "config.h"
+#include "config.h" /* TODO: check if localtime and other functions throw an error */
 
 /* function declarations */
 static void get_all(void);
-static void get_battery(void);
-static void get_disk(void);
-static void get_kernel(void);
-static void get_memory(void);
+static void get_battery(int *y);
+static void get_disk(int *y);
+static void get_kernel(int *y);
+static void get_memory(int *y);
 static void print_all(void);
-static void get_temp(void);
-static void get_time(void);
-static void get_uptime(void);
+static void get_temp(int *y);
+static void get_time(int *y);
+static void get_uptime(int *y);
 
 /* variables */
 static char data[N_ROWS][DATA_LENGTH];
 
 /* function implementations */
 void get_all(void) {
-    get_kernel();
-    get_time();
-    get_uptime();
-    get_temp();
-    get_memory();
-    get_disk();
-    get_battery();
+    int y = 0;
+    get_kernel(&y);
+    get_time(&y);
+    get_uptime(&y);
+    get_temp(&y);
+    get_memory(&y);
+    get_disk(&y);
+    get_battery(&y);
 }
 
-void get_battery(void) {
+void get_battery(int *y) {
     FILE *fptr = fopen(BATTERY,"r");
     if (fptr == NULL)
-        strcpy(data[6], "ERROR");
+        strcpy(data[*y], "ERROR");
     else {
-        fgets(data[6], DATA_LENGTH, fptr); 
+        fgets(data[*y], DATA_LENGTH, fptr); 
         fclose(fptr);
         for(int i = 0; i < DATA_LENGTH; i++){
-            if(data[6][i] == '\n'){
-                data[6][i] = '%';
+            if(data[*y][i] == '\n'){
+                data[*y][i] = '%';
                 break;
             }
         }
     }
+    ++*y;
 }
 
-void get_disk(void) {
+void get_disk(int *y) {
     struct statvfs buffer_statvfs;
     if (statvfs(DISK, &buffer_statvfs) != 0)
-        strcpy(data[5], "ERROR");
+        strcpy(data[*y], "ERROR");
     else {
         long long disk_total = buffer_statvfs.f_blocks * buffer_statvfs.f_bsize;
         long long disk_free = buffer_statvfs.f_bfree * buffer_statvfs.f_frsize;
         long long disk_used = disk_total - disk_free;
         int disk_used_gib = disk_used / (1024*1024*1024);
         int percentage_used = 100 * disk_used / disk_total;
-        sprintf(data[5], "%d GiB used (%d%%)", disk_used_gib, percentage_used);
+        sprintf(data[*y], "%d GiB used (%d%%)", disk_used_gib, percentage_used);
     }
+    ++*y;
 }
 
-void get_kernel(void) {
+void get_kernel(int *y) {
     struct utsname buffer_utsname;
     if (uname(&buffer_utsname) != 0)
-        strcpy(data[0], "ERROR");
+        strcpy(data[*y], "ERROR");
     else
-        strcpy(data[0], buffer_utsname.release);
+        strcpy(data[*y], buffer_utsname.release);
+    ++*y;
 }
 
-void get_memory(void) {
+void get_memory(int *y) {
     FILE *fptr = fopen(MEMORY, "r");
     if (fptr == NULL)
-        strcpy(data[4], "ERROR");
+        strcpy(data[*y], "ERROR");
     else {
         int mem_total, mem_free, mem_available, mem_used; 
         fscanf(fptr, "MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB", &mem_total, &mem_free, &mem_available); 
@@ -82,11 +86,11 @@ void get_memory(void) {
         int percentage_used = 100 * mem_used / mem_total;
         mem_used = mem_used / 1024;
         if (mem_used > 1024)
-            sprintf(data[4], "%.2f GiB used (%u%%)", (float)mem_used / 1024, percentage_used);
+            sprintf(data[*y], "%.2f GiB used (%u%%)", (float)mem_used / 1024, percentage_used);
         else
-            sprintf(data[4], "%u MiB used (%u%%)", mem_used, percentage_used);
+            sprintf(data[*y], "%u MiB used (%u%%)", mem_used, percentage_used);
     }
-
+    ++*y;
 }
 
 void print_all(void) {
@@ -98,44 +102,47 @@ void print_all(void) {
     }
 }
 
-void get_temp(void) {
+void get_temp(int *y) {
     FILE *fptr = fopen(CPU_TEMP, "r");
     if (fptr == NULL)
-        strcpy(data[3], "ERROR");
+        strcpy(data[*y], "ERROR");
     else {
-        fgets(data[3], DATA_LENGTH, fptr);
-        int temp = atoi(data[3]);
-        sprintf(data[3], "%d °C", temp/1000);
+        fgets(data[*y], DATA_LENGTH, fptr);
+        int temp = atoi(data[*y]);
+        sprintf(data[*y], "%d °C", temp/1000);
         fclose(fptr);
     }
+    ++*y;
 }
 
-void get_time(void) {
+void get_time(int *y) {
     time_t now = time(NULL);
     struct tm *now_tm = localtime(&now);
-	sprintf(data[1], "%02d:%02d", now_tm->tm_hour, now_tm->tm_min);
+	sprintf(data[*y], "%02d:%02d", now_tm->tm_hour, now_tm->tm_min);
+    ++*y;
 }
 
-void get_uptime(void) {
+void get_uptime(int *y) {
     FILE *fptr = fopen(UPTIME, "r");
     if(fptr == NULL)
-        strcpy(data[2], "ERROR");
+        strcpy(data[*y], "ERROR");
     else {
         char ch;
-        strcpy(data[2], " ");
+        strcpy(data[*y], " ");
         while ((ch = fgetc(fptr)) != ' ')
-            strncat(data[2], &ch, 1);
-        int uptime = atoi(data[2]);
+            strncat(data[*y], &ch, 1);
+        int uptime = atoi(data[*y]);
         uptime = uptime / 60;
         if (uptime < 60)
-            sprintf(data[2], "%u min", uptime);
+            sprintf(data[*y], "%u min", uptime);
         else {
             int hours = uptime / 60;
             int mins = uptime - hours * 60;
-            sprintf(data[2], "%u h %u min", hours, mins);
+            sprintf(data[*y], "%u h %u min", hours, mins);
         }
         fclose(fptr);
     }
+    ++*y;
 }
 
 int main(void) {
