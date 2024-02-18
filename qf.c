@@ -35,14 +35,14 @@ void get_all(void) {
 }
 
 void get_battery(int *y) {
-    FILE *fptr = fopen(BATTERY,"r");
+    FILE *fptr = fopen(BATTERY, "r");
     if (fptr == NULL)
         strcpy(data[*y], "ERROR");
     else {
         fgets(data[*y], LEN_DATA, fptr); 
         fclose(fptr);
-        for(int i = 0; i < LEN_DATA; i++){
-            if(data[*y][i] == '\n'){
+        for (int i = 0; i < LEN_DATA; i++) {
+            if (data[*y][i] == '\n'){
                 data[*y][i] = '%';
                 break;
             }
@@ -119,7 +119,7 @@ void get_time(int *y) {
 
 void get_uptime(int *y) {
     FILE *fptr = fopen(UPTIME, "r");
-    if(fptr == NULL)
+    if (fptr == NULL)
         strcpy(data[*y], "ERROR");
     else {
         char ch;
@@ -141,7 +141,7 @@ void get_uptime(int *y) {
 }
 
 void print_all(void) {
-    for(int i = 0; i < N_ROWS; i++){
+    for (int i = 0; i < N_ROWS; i++) {
         printf(COL_LOGO "%s", LOGO[i]);
         printf("%s", LABELS[i]);
         printf(COL_TEXT "%s\n", data[i]);
