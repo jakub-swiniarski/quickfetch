@@ -3,7 +3,7 @@ HEADERS=config.h
 OBJECTS=$(SOURCES:.c=.o)
 
 qf: $(OBJECTS)
-	gcc -o qf $(OBJECTS)
+	gcc -o $@ $(OBJECTS)
 
 $(OBJECTS): $(SOURCES) $(HEADERS)
 	gcc -c $(SOURCES) -pedantic -Wall -Wno-deprecated-declarations -O2
