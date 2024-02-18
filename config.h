@@ -4,7 +4,7 @@
 #define N_ROWS 7
 #define LEN_DATA 24
 
-static const char *LOGO[15] = {   
+static const char *LOGO[N_ROWS] = {   
     "      /\\      ",
     "     /  \\     ",
     "    /    \\    ",
