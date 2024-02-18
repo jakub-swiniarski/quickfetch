@@ -4,7 +4,7 @@
 #define ROWS_MAX 7
 #define DATA_LENGTH 24
 
-static const char *LOGO[15]={   
+static const char *LOGO[15] = {   
     "      /\\      ",
     "     /  \\     ",
     "    /    \\    ",
@@ -15,7 +15,7 @@ static const char *LOGO[15]={
 };
 
 //system info
-static const char *LABELS[ROWS_MAX]={
+static const char *LABELS[ROWS_MAX] = {
     "KERNEL: ",
     "TIME: ",
     "UPTIME: ",
@@ -24,8 +24,8 @@ static const char *LABELS[ROWS_MAX]={
     "DISK: ",
     "BATTERY: "
 };
-static const char *UPTIME="/proc/uptime";
-static const char *CPU_TEMP="/sys/class/thermal/thermal_zone0/temp";
-static const char *MEMORY="/proc/meminfo";
-static const char *DISK="/";
-static const char *BATTERY="/sys/class/power_supply/BAT0/capacity";
+static const char *UPTIME = "/proc/uptime";
+static const char *CPU_TEMP = "/sys/class/thermal/thermal_zone0/temp";
+static const char *MEMORY = "/proc/meminfo";
+static const char *DISK = "/";
+static const char *BATTERY = "/sys/class/power_supply/BAT0/capacity";
