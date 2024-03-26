@@ -57,11 +57,11 @@ void get_disk(void) {
     if (statvfs(DISK, &buffer_statvfs) != 0)
         strcpy(data[row], "ERROR");
     else {
-        long long disk_total = buffer_statvfs.f_blocks * buffer_statvfs.f_bsize;
-        long long disk_free = buffer_statvfs.f_bfree * buffer_statvfs.f_frsize;
-        long long disk_used = disk_total - disk_free;
-        int disk_used_gib = disk_used / (1024*1024*1024);
-        int percentage_used = 100 * disk_used / disk_total;
+        unsigned long long disk_total = buffer_statvfs.f_blocks * buffer_statvfs.f_bsize;
+        unsigned long long disk_free = buffer_statvfs.f_bfree * buffer_statvfs.f_frsize;
+        unsigned long long disk_used = disk_total - disk_free;
+        unsigned int disk_used_gib = disk_used / (1024*1024*1024);
+        unsigned int percentage_used = 100 * disk_used / disk_total;
         sprintf(data[row], "%d GiB used (%d%%)", disk_used_gib, percentage_used);
     }
     row++;
@@ -81,11 +81,11 @@ void get_memory(void) {
     if (fptr == NULL)
         strcpy(data[row], "ERROR");
     else {
-        int mem_total, mem_free, mem_available, mem_used; 
+        unsigned int mem_total, mem_free, mem_available, mem_used; 
         fscanf(fptr, "MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB", &mem_total, &mem_free, &mem_available); 
         fclose(fptr); 
         mem_used = mem_total - mem_available;
-        int percentage_used = 100 * mem_used / mem_total;
+        unsigned int percentage_used = 100 * mem_used / mem_total;
         mem_used = mem_used / 1024;
         if (mem_used > 1024)
             sprintf(data[row], "%.2f GiB used (%d%%)", (float)mem_used / 1024, percentage_used);
@@ -127,13 +127,13 @@ void get_uptime(void) {
         strcpy(data[row], " ");
         while ((ch = fgetc(fptr)) != ' ')
             strncat(data[row], &ch, 1);
-        int uptime = atoi(data[row]);
+        unsigned int uptime = atoi(data[row]);
         uptime = uptime / 60;
         if (uptime < 60)
             sprintf(data[row], "%d min", uptime);
         else {
-            int hours = uptime / 60;
-            int mins = uptime - hours * 60;
+            unsigned int hours = uptime / 60;
+            unsigned int mins = uptime - hours * 60;
             sprintf(data[row], "%d h %d min", hours, mins);
         }
         fclose(fptr);
