@@ -1,6 +1,6 @@
-SOURCES=qf.c
-HEADERS=config.h
-OBJECTS=$(SOURCES:.c=.o)
+SOURCES = $(wildcard *.c)
+HEADERS = $(wildcard *.h)
+OBJECTS = $(SOURCES:.c=.o)
 
 qf: $(OBJECTS)
 	gcc -o $@ $(OBJECTS)
