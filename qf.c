@@ -142,7 +142,7 @@ void get_uptime(int *y) {
 
 void print_all(void) {
     for (int i = 0; i < N_ROWS; i++) {
-        printf(COL_LOGO "%s", LOGO[i]);
+        printf(COL_LOGO "%s ", LOGO[i]);
         printf("%s", LABELS[i]);
         printf(COL_TEXT "%s\n", data[i]);
     }
