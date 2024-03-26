@@ -62,7 +62,7 @@ void get_disk(void) {
         unsigned long long disk_used = disk_total - disk_free;
         unsigned int disk_used_gib = disk_used / (1024*1024*1024);
         unsigned int percentage_used = 100 * disk_used / disk_total;
-        sprintf(data[row], "%d GiB used (%d%%)", disk_used_gib, percentage_used);
+        sprintf(data[row], "%u GiB used (%u%%)", disk_used_gib, percentage_used);
     }
     row++;
 }
@@ -82,15 +82,15 @@ void get_memory(void) {
         strcpy(data[row], "ERROR");
     else {
         unsigned int mem_total, mem_free, mem_available, mem_used; 
-        fscanf(fptr, "MemTotal: %d kB MemFree: %d kB MemAvailable: %d kB", &mem_total, &mem_free, &mem_available); 
+        fscanf(fptr, "MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB", &mem_total, &mem_free, &mem_available); 
         fclose(fptr); 
         mem_used = mem_total - mem_available;
         unsigned int percentage_used = 100 * mem_used / mem_total;
         mem_used = mem_used / 1024;
         if (mem_used > 1024)
-            sprintf(data[row], "%.2f GiB used (%d%%)", (float)mem_used / 1024, percentage_used);
+            sprintf(data[row], "%.2f GiB used (%u%%)", (float)mem_used / 1024, percentage_used);
         else
-            sprintf(data[row], "%d MiB used (%d%%)", mem_used, percentage_used);
+            sprintf(data[row], "%u MiB used (%u%%)", mem_used, percentage_used);
     }
     row++;
 }
@@ -130,11 +130,11 @@ void get_uptime(void) {
         unsigned int uptime = atoi(data[row]);
         uptime = uptime / 60;
         if (uptime < 60)
-            sprintf(data[row], "%d min", uptime);
+            sprintf(data[row], "%u min", uptime);
         else {
             unsigned int hours = uptime / 60;
             unsigned int mins = uptime - hours * 60;
-            sprintf(data[row], "%d h %d min", hours, mins);
+            sprintf(data[row], "%u h %u min", hours, mins);
         }
         fclose(fptr);
     }
