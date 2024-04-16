@@ -36,7 +36,7 @@ void get_all(void) {
 }
 
 void get_battery(void) {
-    FILE *fptr = fopen(BATTERY, "r");
+    FILE *fptr = fopen(battery, "r");
     if (fptr == NULL)
         strcpy(data[row], "ERROR");
     else {
@@ -54,13 +54,13 @@ void get_battery(void) {
 
 void get_disk(void) {
     struct statvfs buffer_statvfs;
-    if (statvfs(DISK, &buffer_statvfs) != 0)
+    if (statvfs(disk, &buffer_statvfs) != 0)
         strcpy(data[row], "ERROR");
     else {
         unsigned long long disk_total = buffer_statvfs.f_blocks * buffer_statvfs.f_bsize;
         unsigned long long disk_free = buffer_statvfs.f_bfree * buffer_statvfs.f_frsize;
         unsigned long long disk_used = disk_total - disk_free;
-        unsigned int disk_used_gib = disk_used / (1024*1024*1024);
+        unsigned int disk_used_gib = disk_used / (1024 * 1024 * 1024);
         unsigned int percentage_used = 100 * disk_used / disk_total;
         sprintf(data[row], "%u GiB used (%u%%)", disk_used_gib, percentage_used);
     }
@@ -77,7 +77,7 @@ void get_kernel(void) {
 }
 
 void get_memory(void) {
-    FILE *fptr = fopen(MEMORY, "r");
+    FILE *fptr = fopen(memory, "r");
     if (fptr == NULL)
         strcpy(data[row], "ERROR");
     else {
@@ -96,7 +96,7 @@ void get_memory(void) {
 }
 
 void get_temp(void) {
-    FILE *fptr = fopen(CPU_TEMP, "r");
+    FILE *fptr = fopen(cpu_temp, "r");
     if (fptr == NULL)
         strcpy(data[row], "ERROR");
     else {
@@ -119,7 +119,7 @@ void get_time(void) {
 }
 
 void get_uptime(void) {
-    FILE *fptr = fopen(UPTIME, "r");
+    FILE *fptr = fopen(uptime, "r");
     if (fptr == NULL)
         strcpy(data[row], "ERROR");
     else {
@@ -143,8 +143,8 @@ void get_uptime(void) {
 
 void print_all(void) {
     for (int i = 0; i < N_ROWS; i++) {
-        printf(COL_LOGO "%s ", LOGO[i]);
-        printf("%s", LABELS[i]);
+        printf(COL_LOGO "%s ", logo[i]);
+        printf("%s", labels[i]);
         printf(COL_TEXT "%s\n", data[i]);
     }
 }

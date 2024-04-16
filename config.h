@@ -3,7 +3,7 @@
 #define N_ROWS 7
 #define LEN_DATA 24
 
-static const char *LOGO[N_ROWS] = {   
+static const char *logo[N_ROWS] = {   
     "      /\\      ",
     "     /  \\     ",
     "    /    \\    ",
@@ -13,18 +13,18 @@ static const char *LOGO[N_ROWS] = {
     "/_-''    ''-_\\"
 };
 
-static const char *LABELS[N_ROWS] = {
-    "KERNEL: ",
-    "TIME: ",
-    "UPTIME: ",
-    "CPU TEMP: ",
-    "MEMORY: ",
-    "DISK: ",
-    "BATTERY: "
+static const char *labels[N_ROWS] = {
+    "Kernel: ",
+    "Time: ",
+    "Uptime: ",
+    "CPU temp: ",
+    "Memory: ",
+    "Disk: ",
+    "Battery: "
 };
 
-static const char *UPTIME = "/proc/uptime";
-static const char *CPU_TEMP = "/sys/class/thermal/thermal_zone0/temp";
-static const char *MEMORY = "/proc/meminfo";
-static const char *DISK = "/";
-static const char *BATTERY = "/sys/class/power_supply/BAT0/capacity";
+static const char *uptime = "/proc/uptime";
+static const char *cpu_temp = "/sys/class/thermal/thermal_zone0/temp";
+static const char *memory = "/proc/meminfo";
+static const char *disk = "/";
+static const char *battery = "/sys/class/power_supply/BAT0/capacity";
