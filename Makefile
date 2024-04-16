@@ -6,7 +6,7 @@ qf: $(OBJ)
 	gcc -o $@ $(OBJ)
 
 $(OBJ): $(SRC) $(HDR)
-	gcc -c $(SRC) -pedantic -Wall -Wno-deprecated-declarations -O2
+	gcc -c $(SRC) -std=c99 -pedantic -Wall -Wno-deprecated-declarations -O2
 
 .PHONY: clean run install uninstall
 
