@@ -60,7 +60,7 @@ void get_disk(void) {
         unsigned long long disk_total = buffer_statvfs.f_blocks * buffer_statvfs.f_bsize;
         unsigned long long disk_free = buffer_statvfs.f_bfree * buffer_statvfs.f_frsize;
         unsigned long long disk_used = disk_total - disk_free;
-        unsigned int disk_used_gib = disk_used / (1024*1024*1024);
+        unsigned int disk_used_gib = disk_used / (1024 * 1024 * 1024);
         unsigned int percentage_used = 100 * disk_used / disk_total;
         sprintf(data[row], "%u GiB used (%u%%)", disk_used_gib, percentage_used);
     }
