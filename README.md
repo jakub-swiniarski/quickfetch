@@ -37,5 +37,5 @@ Look for x86_pkg_temp (this is your CPU thermal zone).
 Counting from 0, x86_pkg_temp is 9th on the list. <br>
 Edit config.h:
 ```c
-static const char *CPU_TEMP = "/sys/class/thermal/thermal_zone9/temp";
+static const char *cpu_temp = "/sys/class/thermal/thermal_zone9/temp";
 ```
