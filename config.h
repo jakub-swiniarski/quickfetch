@@ -14,13 +14,13 @@ static const char *LOGO[N_ROWS] = {
 };
 
 static const char *LABELS[N_ROWS] = {
-    "KERNEL: ",
-    "TIME: ",
-    "UPTIME: ",
-    "CPU TEMP: ",
-    "MEMORY: ",
-    "DISK: ",
-    "BATTERY: "
+    "Kernel: ",
+    "Time: ",
+    "Uptime: ",
+    "CPU temp: ",
+    "Memory: ",
+    "Disk: ",
+    "Battery: "
 };
 
 static const char *UPTIME = "/proc/uptime";
