@@ -1,12 +1,12 @@
-SOURCES = $(wildcard *.c)
-HEADERS = $(wildcard *.h)
-OBJECTS = $(SOURCES:.c=.o)
+SRC = $(wildcard *.c)
+HDR = $(wildcard *.h)
+OBJ = $(SRC:.c=.o)
 
-qf: $(OBJECTS)
-	gcc -o $@ $(OBJECTS)
+qf: $(OBJ)
+	gcc -o $@ $(OBJ)
 
-$(OBJECTS): $(SOURCES) $(HEADERS)
-	gcc -c $(SOURCES) -pedantic -Wall -Wno-deprecated-declarations -O2
+$(OBJ): $(SRC) $(HDR)
+	gcc -c $(SRC) -pedantic -Wall -Wno-deprecated-declarations -O2
 
 .PHONY: clean run install uninstall
 
