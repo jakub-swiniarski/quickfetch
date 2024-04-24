@@ -2,22 +2,26 @@ SRC = $(wildcard *.c)
 HDR = $(wildcard *.h)
 OBJ = $(SRC:.c=.o)
 
+all: qf
+
+%.o: %.c
+	gcc -c -std=c99 -pedantic -Wall -Wno-deprecated-declarations -O2 $<
+
+$(OBJ): $(HDR)
+
 qf: $(OBJ)
 	gcc -o $@ $(OBJ)
 
-$(OBJ): $(SRC) $(HDR)
-	gcc -c $(SRC) -std=c99 -pedantic -Wall -Wno-deprecated-declarations -O2
-
-.PHONY: clean run install uninstall
-
-clean:
-	rm *.o qf
-
-run: qf
+run: all
 	./qf
 
-install: qf
-	cp qf /usr/local/bin/
+clean:
+	rm -f *.o qf
+
+install: all
+	cp -f qf /usr/local/bin/
 
 uninstall:
-	rm /usr/local/bin/qf
+	rm -f /usr/local/bin/qf
+
+.PHONY: all run clean install uninstall
