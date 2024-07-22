@@ -34,10 +34,10 @@ void get_all(void) {
 
 void get_battery(void) {
     FILE *fptr = fopen(battery, "r");
-    if (fptr == NULL)
+    if (fptr == NULL ||
+        fgets(data[row], LEN_DATA, fptr) == NULL)
         strcpy(data[row], "ERROR");
     else {
-        fgets(data[row], LEN_DATA, fptr); 
         fclose(fptr);
         for (int i = 0; i < LEN_DATA; i++) {
             if (data[row][i] == '\n'){
@@ -75,11 +75,11 @@ void get_kernel(void) {
 
 void get_memory(void) {
     FILE *fptr = fopen(memory, "r");
-    if (fptr == NULL)
+    unsigned int mem_total, mem_free, mem_available, mem_used; 
+    if (fptr == NULL ||
+        !fscanf(fptr, "MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB", &mem_total, &mem_free, &mem_available))
         strcpy(data[row], "ERROR");
     else {
-        unsigned int mem_total, mem_free, mem_available, mem_used; 
-        fscanf(fptr, "MemTotal: %u kB MemFree: %u kB MemAvailable: %u kB", &mem_total, &mem_free, &mem_available); 
         fclose(fptr); 
         mem_used = mem_total - mem_available;
         unsigned int percentage_used = 100 * mem_used / mem_total;
@@ -94,10 +94,10 @@ void get_memory(void) {
 
 void get_temp(void) {
     FILE *fptr = fopen(cpu_temp, "r");
-    if (fptr == NULL)
+    if (fptr == NULL ||
+        fgets(data[row], LEN_DATA, fptr) == NULL)
         strcpy(data[row], "ERROR");
     else {
-        fgets(data[row], LEN_DATA, fptr);
         int temp = atoi(data[row]);
         sprintf(data[row], "%d °C", temp / 1000);
         fclose(fptr);
