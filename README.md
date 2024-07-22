@@ -1,5 +1,8 @@
 # QuickFetch - quick system info tool
 
+## Logo
+![Logo](logo.png)
+
 ## Example
 ![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/8986e556-c2c4-4f50-b686-5ed4b8da94be)
 
