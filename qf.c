@@ -83,7 +83,7 @@ void get_memory(void) {
         fclose(fptr); 
         mem_used = mem_total - mem_available;
         unsigned int percentage_used = 100 * mem_used / mem_total;
-        mem_used = mem_used / 1024;
+        mem_used /= 1024;
         if (mem_used > 1024)
             sprintf(data[row], "%.2f GiB used (%u%%)", (float)mem_used / 1024, percentage_used);
         else
@@ -125,7 +125,7 @@ void get_uptime(void) {
         while ((ch = fgetc(fptr)) != ' ')
             strncat(data[row], &ch, 1);
         unsigned int uptime = atoi(data[row]);
-        uptime = uptime / 60;
+        uptime /= 60;
         if (uptime < 60)
             sprintf(data[row], "%u min", uptime);
         else {
