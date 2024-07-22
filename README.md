@@ -3,7 +3,8 @@
 ## Logo
 ![Logo](logo.png)
 
-## Example
+## Screenshots
+![image](https://github.com/user-attachments/assets/b38c5733-d976-4afe-9aa2-e76290441594)
 ![image](https://github.com/jakub-swiniarski/quickfetch/assets/77209709/8986e556-c2c4-4f50-b686-5ed4b8da94be)
 
 ## How to install?
