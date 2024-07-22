@@ -7,7 +7,6 @@
 
 #include "config.h"
 
-/* function declarations */
 static void get_all(void);
 static void get_battery(void);
 static void get_disk(void);
@@ -18,11 +17,9 @@ static void get_time(void);
 static void get_uptime(void);
 static void print_all(void);
 
-/* variables */
 static char data[N_ROWS][LEN_DATA];
 static int row;
 
-/* function implementations */
 void get_all(void) {
     row = 0;
     /* put these in the same order as their labels */
