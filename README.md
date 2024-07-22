@@ -5,10 +5,9 @@
 
 ## How to install?
 ### Compile & install
+Run this with root privileges:
 ```shell
-git clone https://github.com/jakub-swiniarski/quickfetch.git
-cd quickfetch
-sudo make install
+make install
 ```
 
 ### How to run?
@@ -18,9 +17,9 @@ qf
 ```
 
 ### How to uninstall?
-Go inside the cloned repository and run: <br/>
+Go inside the cloned repository and run this with root privileges: <br/>
 ```shell
-sudo make clean uninstall
+make uninstall
 ```
 
 ## Configuration
@@ -39,3 +38,4 @@ Edit config.h:
 ```c
 static const char *cpu_temp = "/sys/class/thermal/thermal_zone9/temp";
 ```
+Recompile & reinstall to see the changes.
