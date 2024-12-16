@@ -1,3 +1,4 @@
+CC  = cc
 SRC = $(wildcard *.c)
 HDR = $(wildcard *.h)
 OBJ = $(SRC:.c=.o)
@@ -5,12 +6,12 @@ OBJ = $(SRC:.c=.o)
 all: qf
 
 %.o: %.c
-	gcc -c -std=c99 -pedantic -Wall -Wno-deprecated-declarations -O2 $<
+	$(CC) -c -std=c99 -pedantic -Wall -Wno-deprecated-declarations -O2 $<
 
 $(OBJ): $(HDR)
 
 qf: $(OBJ)
-	gcc -o $@ $(OBJ)
+	$(CC) -o $@ $(OBJ)
 
 run: all
 	./qf

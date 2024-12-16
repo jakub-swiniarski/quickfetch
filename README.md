@@ -9,7 +9,7 @@
 
 ## How to install?
 ### Prerequisites
-- gcc
+- a C compiler
 - make
 
 ### Compile & install
